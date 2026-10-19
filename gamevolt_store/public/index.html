@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06101f">
+  <meta name="description" content="GameVolt — toko game digital, top up, voucher, dan bantuan AI.">
+  <title>GAMEVOLT — Play More, Pay Less</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/config.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="GameVolt beranda"><span class="brand-mark">✦</span><span>GAME<span>VOLT</span><small>PLAY MORE, PAY LESS</small></span></a>
+    <label class="search"><span>⌕</span><input id="searchInput" placeholder="Cari game, produk, atau kategori..." aria-label="Cari produk"></label>
+    <div class="top-actions"><button class="icon-btn" id="cartOpen" aria-label="Buka keranjang">🛒 <b id="cartCount">0</b></button><button class="user-pill" id="authOpen">Masuk / Daftar</button></div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav>
+        <a class="nav-item active" href="#home">⌂ <span>Beranda</span></a>
+        <a class="nav-item" href="#products">🎮 <span>Game & Top Up</span></a>
+        <a class="nav-item" href="#how">◈ <span>Cara Pembelian</span></a>
+        <a class="nav-item" href="#orders">▤ <span>Pesanan Saya</span></a>
+      </nav>
+      <div class="sidebar-ai"><div class="ai-orb">✧</div><b>AI Store Assistant</b><p>Tanya tentang cara belanja, produk, atau bantuan lainnya.</p><button class="btn btn-small" id="askAi">Chat AI Sekarang ↗</button></div>
+      <div class="sidebar-foot"><span class="live-dot"></span> Sistem toko siap digunakan<br><small>AI memerlukan konfigurasi API</small></div>
+    </aside>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> DIGITAL GAMING STORE</div><h1>TOP UP GAME<br><span>LEBIH MUDAH & CEPAT</span></h1><p>Produk digital pilihan. Checkout praktis. Konfirmasi pembayaran dengan mudah.</p><div class="hero-buttons"><a class="btn" href="#products">Mulai Belanja <span>→</span></a><a class="btn btn-ghost" href="#how">Cara Pembelian</a></div><div class="hero-stats"><div><b>24/7</b><small>Bantuan online</small></div><div><b>QRIS</b><small>Pembayaran manual</small></div><div><b>Real-time</b><small>Status pesanan</small></div></div></div>
+        <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-crystal">✦</div><div class="floating-card card-top"><span>✧</span><div><b>AI RECOMMENDATION</b><small>Temukan produk favoritmu</small></div></div><div class="floating-card card-bottom"><span>⚡</span><div><b>CHECKOUT PRAKTIS</b><small>QRIS + konfirmasi WhatsApp</small></div></div><div class="hero-tag">GAME<br><b>ON.</b></div></div>
+      </section>
+
+      <section class="section" id="products">
+        <div class="section-head"><div><div class="eyebrow">PILIH FAVORITMU</div><h2>Produk <span>Populer</span></h2></div><div class="filters" id="filters"><button class="filter active" data-category="Semua">Semua</button><button class="filter" data-category="Mobile">Mobile</button><button class="filter" data-category="PC">PC</button><button class="filter" data-category="Voucher">Voucher</button></div></div>
+        <div id="productGrid" class="product-grid"><div class="loading-card">Memuat katalog...</div></div>
+      </section>
+
+      <section class="feature-strip">
+        <div><span class="feature-icon">◈</span><b>Pembayaran QRIS</b><small>Scan dan bayar melalui aplikasi pilihanmu.</small></div>
+        <div><span class="feature-icon">⌁</span><b>Konfirmasi WhatsApp</b><small>Kirim bukti bayar ke admin untuk diverifikasi.</small></div>
+        <div><span class="feature-icon">✧</span><b>AI Assistant</b><small>Bantuan belanja saat API AI sudah diaktifkan.</small></div>
+      </section>
+
+      <section class="section how-section" id="how"><div class="section-head"><div><div class="eyebrow">MUDAH DAN JELAS</div><h2>Cara <span>Pembelian</span></h2></div></div><div class="steps"><div><i>01</i><b>Pilih produk</b><p>Pilih produk dan isi detail game jika diperlukan.</p></div><div><i>02</i><b>Buat pesanan</b><p>Masukkan nama dan kontak agar admin dapat membantu.</p></div><div><i>03</i><b>Bayar dengan QRIS</b><p>Scan QRIS lalu bayar sesuai nominal pesanan.</p></div><div><i>04</i><b>Kirim bukti</b><p>Kirim bukti secara manual melalui WhatsApp admin.</p></div></div></section>
+
+      <section class="section order-section" id="orders"><div class="section-head"><div><div class="eyebrow">STATUS PEMBELIAN</div><h2>Lacak <span>Pesanan</span></h2></div></div><form id="trackForm" class="track-form"><input id="orderNumber" placeholder="Contoh: GV-ABC12345" required><button class="btn" type="submit">Lacak Pesanan →</button></form><div id="trackResult" class="track-result" aria-live="polite">Masukkan nomor pesanan untuk melihat status jika pesanan tersimpan di database.</div></section>
+
+      <footer><a class="brand" href="#"><span class="brand-mark">✦</span><span>GAME<span>VOLT</span><small>PLAY MORE, PAY LESS</small></span></a><p>Belanja game digital dengan lebih praktis.</p><small>© <span id="year"></span> GameVolt. Status pembayaran hanya sah setelah diverifikasi admin.</small></footer>
+    </main>
+    <aside class="right-rail"><div class="rail-card"><div class="eyebrow">KENAPA GAMEVOLT?</div><h3>Lebih fokus ke <span>game kamu.</span></h3><div class="reason"><i>⚡</i><div><b>Proses terarah</b><small>Alur pesanan jelas dari checkout hingga konfirmasi.</small></div></div><div class="reason"><i>♢</i><div><b>Konfirmasi manual</b><small>Admin memeriksa bukti pembayaran sebelum memproses pesanan.</small></div></div><div class="reason"><i>✧</i><div><b>AI Assistant</b><small>Bantuan AI setelah API dikonfigurasi.</small></div></div></div><div class="rail-promo"><span>✦</span><div class="eyebrow">LEVEL UP YOUR GAME</div><h3>Ready to<br>power up?</h3><p>Temukan produk yang cocok untukmu.</p><a href="#products">Jelajahi produk ↗</a></div><div class="rail-status"><span class="live-dot"></span><div><b>GameVolt Support</b><small>WhatsApp admin tersedia</small></div><button id="contactAdmin" aria-label="Hubungi admin">↗</button></div></aside>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Tutup">×</button><div id="modalContent"></div></section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
